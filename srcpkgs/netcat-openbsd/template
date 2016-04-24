@@ -1,0 +1,22 @@
+# Template file for 'netcat-openbsd'
+pkgname=netcat-openbsd
+version=1.105
+revision=1
+build_style=gnu-makefile
+makedepends="libressl-devel libbsd-devel pkg-config"
+configure_args="--program-prefix=b"
+short_desc="The OpenBSD netcat utility"
+maintainer="Joey Smith <joeysmith@gmail.com>"
+license="BSD"
+homepage="https://github.com/tml/netcat-openbsd-void"
+distfiles="https://github.com/tml/${pkgname}-void/releases/download/${version}/${pkgname}-${version}.tar.xz"
+checksum=bd0d2dca6a007a2d3e60b079c6b0ebda533c59bed404f7632bb9aeebf637dce8
+
+alternatives="
+ nc:nc:/usr/bin/bsd-netcat
+ nc:nc.1:/usr/share/man/man1/bsd-netcat.1"
+
+do_install() {
+    vbin bsd-netcat
+    vman bsd-netcat.1
+}
